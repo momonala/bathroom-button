@@ -67,12 +67,12 @@ uv sync
 
 ### 2. Configure Spotify credentials
 
-Copy `src/values.py.example` to `src/values.py` and fill in real credentials:
+Copy `.env.example` to `.env` and fill in real credentials:
 
-```python
-SPOTIFY_CLIENT_ID: str = "your_client_id"         # Required - from Spotify Developer Dashboard
-SPOTIFY_CLIENT_SECRET: str = "your_client_secret" # Required - from Spotify Developer Dashboard
-PLAYLIST_URI: str = "your_playlist_id"            # Required - the ID from your playlist URL
+```
+SPOTIFY_CLIENT_ID=your_client_id          # from Spotify Developer Dashboard
+SPOTIFY_CLIENT_SECRET=your_client_secret  # from Spotify Developer Dashboard
+PLAYLIST_URI=your_playlist_id             # the ID from your playlist URL
 ```
 
 > Get credentials at https://developer.spotify.com/dashboard
@@ -115,8 +115,8 @@ bathroom-media/
 │   ├── spotify_search.py   # Spotify API client - fetches playlist tracks
 │   ├── youtube_search.py   # YouTube search + yt-dlp download
 │   ├── config.py           # Exposes pyproject.toml project metadata via `uv run config`
-│   ├── values.py.example   # Stub credentials used in CI
-│   └── values.py           # Credentials (gitignored) - MUST CREATE
+│   └── env.py              # Loads secrets from .env
+├── .env.example            # Stub secrets used in CI; copy to .env (gitignored)
 ├── media/                  # Downloaded MP3 cache (gitignored)
 ├── pyproject.toml          # Project dependencies (PEP 621)
 ├── install/
@@ -149,7 +149,7 @@ bathroom-media/
 | Path | Purpose |
 |------|---------|
 | `media/*.mp3` | Cached songs from Spotify playlist |
-| `src/values.py` | Spotify API credentials (gitignored) |
+| `.env` | Spotify API credentials (gitignored) |
 
 ---
 
@@ -165,7 +165,7 @@ An older version used ESP8266 + MQTT for wireless button triggering. This is dep
 |-------|-----|
 | No audio | Check `aplay -l` for devices. VLC config: `--alsa-audio-device=hw:0,0` |
 | GPIO permission denied | Run with `sudo` or add user to `gpio` group |
-| Spotify auth fails | Verify `src/values.py` credentials match your Spotify Developer app |
+| Spotify auth fails | Verify `.env` credentials match your Spotify Developer app |
 | Songs not downloading | Ensure ffmpeg installed. Update yt-dlp: `uv sync --upgrade-package yt-dlp` |
 | Download hangs | YouTube search rate limits. `POOL_SIZE=2` in `src/download_songs.py` controls parallelism. |
 

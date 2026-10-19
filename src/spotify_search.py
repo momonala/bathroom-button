@@ -8,9 +8,9 @@ from typing import List
 
 import requests
 
-from src.values import PLAYLIST_URI
-from src.values import SPOTIFY_CLIENT_ID
-from src.values import SPOTIFY_CLIENT_SECRET
+from src.env import PLAYLIST_URI
+from src.env import SPOTIFY_CLIENT_ID
+from src.env import SPOTIFY_CLIENT_SECRET
 
 logging.basicConfig()
 logger = logging.getLogger(__name__)

@@ -16,11 +16,11 @@ The playlist is generated on Spotify and can be periodically synced locally. Unf
 ## Setup Raspberry Pi: 
 
 1. Install requirements (python 3) `poetry install`
-2. Populate `src/values.py` with your credentials:
-```python
-SPOTIFY_CLIENT_ID: str = ""
-SPOTIFY_CLIENT_SECRET: str = ""
-PLAYLIST_URI: str = ""
+2. Copy `.env.example` to `.env` and fill in your credentials:
+```
+SPOTIFY_CLIENT_ID=
+SPOTIFY_CLIENT_SECRET=
+PLAYLIST_URI=
 ```
 
 3. Populate `arduino_secrets.h` with your credentials:
