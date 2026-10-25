@@ -8,24 +8,14 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "RPi.GPIO; sys_platform == 'linux'",
     "httpx==0.23.3",
-    "ipython",
-    "paho-mqtt",
+    "python-dotenv>=1.2.4",
     "python-vlc",
     "requests",
+    "RPi.GPIO; sys_platform == 'linux'",
+    "typer>=0.9.0",
     "youtube-search-python",
     "yt-dlp",
-    "pytest>=8.0.0",
-    "pytest-cov>=4.0.0",
-    "black",
-    "jupyter",
-    "notebook",
-    "pandas>=2.3.3",
-    "ruff>=0.14.10",
-    "typer>=0.9.0",
-    "isort>=7.0.0",
-    "python-dotenv>=1.2.4",
 ]
 
 [tool.config]
