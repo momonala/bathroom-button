@@ -3,8 +3,6 @@ import logging
 import re
 from functools import partial
 from string import punctuation
-from typing import Dict
-from typing import List
 
 import requests
 
@@ -23,7 +21,7 @@ class SpotifySearch:
         logger.info(f"Found tracks: {self.tracks_and_names}")
 
     @staticmethod
-    def _get_token() -> Dict:
+    def _get_token() -> dict:
         url = "https://accounts.spotify.com/api/token"
         data = {"grant_type": "client_credentials"}
         auth = (SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET)
@@ -34,7 +32,7 @@ class SpotifySearch:
         return response
 
     @staticmethod
-    def _get_tracks(token: str) -> Dict:
+    def _get_tracks(token: str) -> dict:
         url = f"https://api.spotify.com/v1/playlists/{PLAYLIST_URI}/tracks"
         headers = {"Authorization": f"Bearer {token}"}
         logger.info(f"Making request: {(url, headers)}")
@@ -43,7 +41,7 @@ class SpotifySearch:
         logger.debug(f"Got response: {response}")
         return response
 
-    def _get_tracks_and_names(self) -> List[Dict[str, str]]:
+    def _get_tracks_and_names(self) -> list[dict[str, str]]:
         token_resp = self._get_token()
         token = token_resp["access_token"]
         tracks_resp = self._get_tracks(token)

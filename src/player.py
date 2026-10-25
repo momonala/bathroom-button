@@ -19,7 +19,6 @@ import logging
 import random
 import time
 from datetime import datetime
-from typing import Optional
 
 import RPi.GPIO as GPIO
 import vlc
@@ -91,7 +90,7 @@ def wait_for_button_press() -> None:
     logger.info("✅ Button pressed!")
 
 
-def pick_song() -> Optional[str]:
+def pick_song() -> str | None:
     audio_files = glob.glob(MEDIA_DIR)
     return random.choice(audio_files) if audio_files else None
 

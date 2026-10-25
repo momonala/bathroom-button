@@ -1,7 +1,5 @@
 import logging
 import os
-from typing import Dict
-from typing import Tuple
 
 import yt_dlp as youtube_dl
 from youtubesearchpython import VideosSearch
@@ -11,13 +9,13 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
-def parse_search_terms(search_terms: Dict) -> Tuple[str, str]:
+def parse_search_terms(search_terms: dict) -> tuple[str, str]:
     search_terms_str = f"{search_terms['track']} {search_terms['artist']}"
     mp3_output = f"media/{search_terms_str.replace(' ', '')}.mp3"
     return search_terms_str, mp3_output
 
 
-def download_youtube_video_if_needed(search_terms: Dict):
+def download_youtube_video_if_needed(search_terms: dict):
     search_terms_str, mp3_output = parse_search_terms(search_terms)
     if os.path.exists(mp3_output):
         logger.info(f"File {mp3_output} already exists. Skipping.")
@@ -28,14 +26,14 @@ def download_youtube_video_if_needed(search_terms: Dict):
     _download_youtube_video(video_params, mp3_output)
 
 
-def _youtube_search(search_terms: str) -> Dict[str, str]:
+def _youtube_search(search_terms: str) -> dict[str, str]:
     # return {"id": "0XlUsEfcKB0", "title": "test video"}
     video_search_results = VideosSearch(search_terms, limit=1)
     single_response = video_search_results.result()["result"][0]
     return {"id": single_response["id"], "title": single_response["title"]}
 
 
-def _download_youtube_video(video_params: Dict[str, str], mp3_output: str) -> None:
+def _download_youtube_video(video_params: dict[str, str], mp3_output: str) -> None:
     options = {
         # todo youtube-dl issue, cant download only audio, getting codec
         # issue
